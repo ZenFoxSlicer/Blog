@@ -78,7 +78,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567890"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -87,7 +87,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567891"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -96,7 +96,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567892"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -108,7 +108,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567893"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -135,7 +135,7 @@ interface Article {
               <ins class="adsbygoogle"
                    style="display:block"
                    data-ad-client="ca-pub-7697634874358535"
-                   data-ad-slot="1234567894"
+                   data-ad-slot="6904704441"
                    data-ad-format="auto"
                    data-full-width-responsive="true"></ins>
             </div>
@@ -165,7 +165,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567895"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -174,7 +174,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567896"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -183,7 +183,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567897"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -192,7 +192,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567898"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -201,7 +201,7 @@ interface Article {
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
-                 data-ad-slot="1234567899"
+                 data-ad-slot="6904704441"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
@@ -222,7 +222,7 @@ interface Article {
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-7697634874358535"
-             data-ad-slot="1234567800"
+             data-ad-slot="6904704441"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
       </footer>
