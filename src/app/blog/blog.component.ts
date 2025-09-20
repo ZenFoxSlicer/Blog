@@ -75,6 +75,14 @@ interface Article {
 
           <!-- Google Ad Spaces -->
           <div class="ad-container">
+            <div class="ad-debug" style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 4px;">
+              <h5 style="margin: 0 0 5px 0; color: #495057;">AdSense Debug Info</h5>
+              <p style="margin: 0; font-size: 12px; color: #6c757d;">
+                Client: ca-pub-7697634874358535<br>
+                Slot: 1234567890 (placeholder)<br>
+                Status: <span id="ad-status-1">Loading...</span>
+              </p>
+            </div>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
@@ -731,12 +739,20 @@ export class BlogComponent implements OnInit, AfterViewInit {
 
   initializeAdSense() {
     try {
-      // Check if adsbygoogle is available
-      if (typeof (window as any).adsbygoogle !== 'undefined') {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      console.log('Blog component: Initializing AdSense...');
+      // Use the global initialization function
+      if (typeof (window as any).initializeAdSense === 'function') {
+        (window as any).initializeAdSense();
+      } else {
+        console.log('Global AdSense function not available yet');
+        // Fallback: try direct initialization
+        if (typeof (window as any).adsbygoogle !== 'undefined') {
+          console.log('Using fallback AdSense initialization');
+          ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+        }
       }
     } catch (e) {
-      console.log('AdSense not ready yet');
+      console.log('AdSense initialization error:', e);
     }
   }
 

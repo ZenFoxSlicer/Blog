@@ -4,15 +4,61 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7697634874358535"
      crossorigin="anonymous"></script>
   <script>
-    // Initialize AdSense ads when page loads
-    window.addEventListener('load', function() {
+    // Global AdSense initialization function
+    window.initializeAdSense = function() {
+      console.log('Initializing AdSense ads...');
+      console.log('AdSense script loaded:', typeof adsbygoogle !== 'undefined');
+      
       if (typeof adsbygoogle !== 'undefined') {
         try {
-          (adsbygoogle = window.adsbygoogle || []).push({});
+          // Get all ad containers
+          const adContainers = document.querySelectorAll('.adsbygoogle');
+          console.log('Found', adContainers.length, 'ad containers');
+          
+          // Update debug status
+          const statusElement = document.getElementById('ad-status-1');
+          if (statusElement) {
+            statusElement.textContent = 'Initializing...';
+          }
+          
+          // Initialize each ad container
+          adContainers.forEach((container, index) => {
+            console.log('Initializing ad container', index + 1, 'with data:', {
+              client: container.getAttribute('data-ad-client'),
+              slot: container.getAttribute('data-ad-slot'),
+              format: container.getAttribute('data-ad-format')
+            });
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          });
+          
+          // Update debug status after initialization
+          setTimeout(() => {
+            if (statusElement) {
+              statusElement.textContent = 'Initialized (check for ads)';
+            }
+          }, 1000);
+          
         } catch (e) {
           console.log('AdSense initialization error:', e);
+          const statusElement = document.getElementById('ad-status-1');
+          if (statusElement) {
+            statusElement.textContent = 'Error: ' + e.message;
+          }
+        }
+      } else {
+        console.log('AdSense script not loaded yet');
+        const statusElement = document.getElementById('ad-status-1');
+        if (statusElement) {
+          statusElement.textContent = 'AdSense script not loaded';
         }
       }
+    };
+
+    // Initialize when page loads
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        window.initializeAdSense();
+      }, 1000);
     });
   </script>
   <meta charset="utf-8">
