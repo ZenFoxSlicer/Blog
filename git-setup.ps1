@@ -18,7 +18,7 @@ Write-Host "Adding files to Git..." -ForegroundColor Yellow
 
 # Commit files
 Write-Host "Committing files..." -ForegroundColor Yellow
-& "C:\Program Files\Git\bin\git.exe" commit -m "Initial commit: Angular dental blog app with SSR"
+& "C:\Program Files\Git\bin\git.exe" commit -m "Initial commit: Angular blog app with SSR"
 
 # Show status
 Write-Host "Git status:" -ForegroundColor Yellow

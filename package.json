@@ -1,17 +1,17 @@
 {
-  "name": "dental-blog-app",
+  "name": "blog-app",
   "version": "1.0.0",
-  "description": "A modern Angular dental blog application with Server-Side Rendering (SSR)",
-  "keywords": ["angular", "dental", "blog", "ssr", "typescript", "scss"],
+  "description": "A modern Angular blog application with Server-Side Rendering (SSR)",
+  "keywords": ["angular", "blog", "ssr", "typescript", "scss"],
   "author": "Fox",
   "license": "MIT",
-  "homepage": "https://github.com/fox/dental-blog-app#readme",
+  "homepage": "https://github.com/fox/blog-app#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fox/dental-blog-app.git"
+    "url": "git+https://github.com/fox/blog-app.git"
   },
   "bugs": {
-    "url": "https://github.com/fox/dental-blog-app/issues"
+    "url": "https://github.com/fox/blog-app/issues"
   },
   "scripts": {
     "ng": "ng",
@@ -21,8 +21,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
-    "serve:ssr": "node dist/dental-client/server/server.mjs",
-    "serve:ssr:dental-client": "node dist/dental-client/server/server.mjs",
+    "serve:ssr": "node dist/blog-app/server/server.mjs",
+    "serve:ssr:blog-app": "node dist/blog-app/server/server.mjs",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

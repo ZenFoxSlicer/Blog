@@ -1,5 +1,5 @@
 # Complete Git Setup Script
-Write-Host "=== Git Setup for Angular Dental Blog App ===" -ForegroundColor Green
+Write-Host "=== Git Setup for Angular Blog App ===" -ForegroundColor Green
 Write-Host ""
 
 # Set Git path
@@ -22,7 +22,7 @@ Write-Host ""
 
 # Step 4: Create initial commit
 Write-Host "Step 4: Creating initial commit..." -ForegroundColor Yellow
-& $gitPath commit -m "Initial commit: Angular dental blog app with SSR"
+& $gitPath commit -m "Initial commit: Angular blog app with SSR"
 Write-Host ""
 
 # Step 5: Check status

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dental-client": {
+    "blog-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -66,10 +66,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "dental-client:build:production"
+              "buildTarget": "blog-app:build:production"
             },
             "development": {
-              "buildTarget": "dental-client:build:development"
+              "buildTarget": "blog-app:build:development"
             }
           },
           "defaultConfiguration": "development"

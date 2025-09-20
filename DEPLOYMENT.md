@@ -1,6 +1,6 @@
 # Deployment Guide
 
-This guide provides detailed instructions for deploying your Angular dental blog application to various platforms.
+This guide provides detailed instructions for deploying your Angular blog application to various platforms.
 
 ## Prerequisites
 
@@ -54,7 +54,7 @@ sudo apt install git
 
 4. **Create initial commit:**
    ```bash
-   git commit -m "Initial commit: Angular dental blog app"
+   git commit -m "Initial commit: Angular blog app"
    ```
 
 ## Step 3: Create Remote Repository
@@ -63,7 +63,7 @@ sudo apt install git
 
 1. Go to https://github.com
 2. Click "New repository"
-3. Name it "dental-blog-app" or similar
+3. Name it "blog-app" or similar
 4. Don't initialize with README (we already have one)
 5. Click "Create repository"
 6. Copy the repository URL
@@ -73,7 +73,7 @@ sudo apt install git
 1. Go to https://gitlab.com
 2. Click "New project"
 3. Choose "Create blank project"
-4. Name it "dental-blog-app"
+4. Name it "blog-app"
 5. Click "Create project"
 6. Copy the repository URL
 
@@ -81,7 +81,7 @@ sudo apt install git
 
 ```bash
 # Add remote origin (replace with your actual repository URL)
-git remote add origin https://github.com/yourusername/dental-blog-app.git
+git remote add origin https://github.com/yourusername/blog-app.git
 
 # Push to remote repository
 git push -u origin main
@@ -97,7 +97,7 @@ git push -u origin main
 4. **Connect your repository**
 5. **Configure build settings:**
    - Build command: `npm run build`
-   - Publish directory: `dist/dental-client/browser`
+   - Publish directory: `dist/blog-app/browser`
 6. **Click "Deploy site"**
 
 **Advantages:**
@@ -114,7 +114,7 @@ git push -u origin main
 4. **Configure settings:**
    - Framework Preset: Angular
    - Build Command: `npm run build`
-   - Output Directory: `dist/dental-client/browser`
+   - Output Directory: `dist/blog-app/browser`
 5. **Click "Deploy"**
 
 **Advantages:**
@@ -164,7 +164,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist/dental-client/browser
+        publish_dir: ./dist/blog-app/browser
 ```
 
 ### Option 4: Traditional Server (VPS/Cloud)
@@ -173,8 +173,8 @@ jobs:
 2. **Install Node.js 18+** on the server
 3. **Clone your repository:**
    ```bash
-   git clone https://github.com/yourusername/dental-blog-app.git
-   cd dental-blog-app
+   git clone https://github.com/yourusername/blog-app.git
+   cd blog-app
    ```
 4. **Install dependencies:**
    ```bash
@@ -190,7 +190,7 @@ jobs:
    ```
 7. **Start the application:**
    ```bash
-   pm2 start npm --name "dental-blog" -- run serve:ssr:dental-client
+   pm2 start npm --name "blog-app" -- run serve:ssr:blog-app
    pm2 save
    pm2 startup
    ```
@@ -199,12 +199,12 @@ jobs:
 
 1. **Build Docker image:**
    ```bash
-   docker build -t dental-blog-app .
+   docker build -t blog-app .
    ```
 
 2. **Run container:**
    ```bash
-   docker run -p 4000:4000 dental-blog-app
+   docker run -p 4000:4000 blog-app
    ```
 
 3. **For production with docker-compose:**
@@ -314,7 +314,7 @@ If you encounter issues during deployment:
 
 1. Check the platform's documentation
 2. Review error logs in your hosting platform
-3. Test locally first: `npm run build && npm run serve:ssr:dental-client`
+3. Test locally first: `npm run build && npm run serve:ssr:blog-app`
 4. Check browser console for client-side errors
 5. Verify all environment variables are set correctly
 

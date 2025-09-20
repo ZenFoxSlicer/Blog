@@ -1,5 +1,5 @@
 [build]
-  publish = "dist/dental-client/browser"
+  publish = "dist/blog-app/browser"
   command = "npm run build:prod"
 
 [build.environment]

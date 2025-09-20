@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 4000
 
 # Start the application
-CMD ["npm", "run", "serve:ssr:dental-client"]
+CMD ["npm", "run", "serve:ssr:blog-app"]

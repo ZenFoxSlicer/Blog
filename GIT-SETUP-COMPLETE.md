@@ -12,7 +12,7 @@
 
 ### ✅ Step 3: Files Added and Committed
 - All project files have been added to Git
-- Initial commit created: "Initial commit: Angular dental blog app with SSR"
+- Initial commit created: "Initial commit: Angular blog app with SSR"
 - Working tree is clean (all changes committed)
 
 ### ✅ Step 4: Repository Status
@@ -27,14 +27,14 @@
 2. **Sign in or create account**
 3. **Click "New repository" (green button)**
 4. **Repository settings:**
-   - Repository name: `dental-blog-app`
-   - Description: `Angular dental blog application with SSR`
+   - Repository name: `blog-app`
+   - Description: `Angular blog application with SSR`
    - Visibility: Public or Private (your choice)
    - **DO NOT** check "Add a README file" (we already have one)
    - **DO NOT** check "Add .gitignore" (we already have one)
    - **DO NOT** check "Choose a license"
 5. **Click "Create repository"**
-6. **Copy the repository URL** (it will look like: `https://github.com/yourusername/dental-blog-app.git`)
+6. **Copy the repository URL** (it will look like: `https://github.com/yourusername/blog-app.git`)
 
 ### Option B: GitLab
 
@@ -43,8 +43,8 @@
 3. **Click "New project"**
 4. **Choose "Create blank project"**
 5. **Project settings:**
-   - Project name: `dental-blog-app`
-   - Project description: `Angular dental blog application with SSR`
+   - Project name: `blog-app`
+   - Project description: `Angular blog application with SSR`
    - Visibility: Public or Private (your choice)
 6. **Click "Create project"**
 7. **Copy the repository URL**
@@ -55,7 +55,7 @@ Once you have your repository URL, run these commands in your terminal:
 
 ```bash
 # Add remote origin (replace with your actual repository URL)
-git remote add origin https://github.com/yourusername/dental-blog-app.git
+git remote add origin https://github.com/yourusername/blog-app.git
 
 # Push to remote repository
 git push -u origin master
@@ -97,7 +97,7 @@ git push -u origin master:main
 # Build for production
 npm run build
 
-# The built files will be in: dist/dental-client/browser/
+# The built files will be in: dist/blog-app/browser/
 ```
 
 ## 🎯 Quick Deployment Options:
@@ -106,7 +106,7 @@ npm run build
 1. Go to https://netlify.com
 2. Connect your GitHub repository
 3. Build command: `npm run build`
-4. Publish directory: `dist/dental-client/browser`
+4. Publish directory: `dist/blog-app/browser`
 5. Click "Deploy site"
 
 ### Vercel (Great for Angular):
@@ -114,7 +114,7 @@ npm run build
 2. Import your repository
 3. Framework: Angular
 4. Build command: `npm run build`
-5. Output directory: `dist/dental-client/browser`
+5. Output directory: `dist/blog-app/browser`
 6. Click "Deploy"
 
 ## 📞 Need Help?
@@ -127,7 +127,7 @@ If you encounter any issues:
 
 ## 🎉 Congratulations!
 
-Your Angular dental blog app is now:
+Your Angular blog app is now:
 - ✅ **Git repository initialized**
 - ✅ **All files committed**
 - ✅ **Ready for remote push**

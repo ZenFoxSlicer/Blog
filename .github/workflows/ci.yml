@@ -67,5 +67,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist/dental-client/browser
+        publish_dir: ./dist/blog-app/browser
         cname: # Add your custom domain here if you have one

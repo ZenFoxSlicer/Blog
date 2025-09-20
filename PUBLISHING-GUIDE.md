@@ -1,8 +1,8 @@
-# 🚀 Complete Publishing Guide for Dental Blog App
+# 🚀 Complete Publishing Guide for Blog App
 
 ## ✅ What's Already Prepared
 
-Your Angular dental blog app is now **100% ready for publishing** with the following configurations:
+Your Angular blog app is now **100% ready for publishing** with the following configurations:
 
 ### 📦 **Project Configuration**
 - ✅ **package.json** - Updated with proper metadata, scripts, and repository info
@@ -14,7 +14,7 @@ Your Angular dental blog app is now **100% ready for publishing** with the follo
 - ✅ **Production build** - Tested and working (`npm run build:prod`)
 - ✅ **Development build** - Ready for local development
 - ✅ **SSR support** - Server-side rendering configured
-- ✅ **Output directory** - `dist/dental-client/browser/`
+- ✅ **Output directory** - `dist/blog-app/browser/`
 
 ### 🚀 **Deployment Configurations**
 - ✅ **Netlify** - `netlify.toml` configured
@@ -40,13 +40,13 @@ Your Angular dental blog app is now **100% ready for publishing** with the follo
 4. **Choose GitHub** and select your repository
 5. **Build settings:**
    - Build command: `npm run build:prod`
-   - Publish directory: `dist/dental-client/browser`
+   - Publish directory: `dist/blog-app/browser`
 6. **Click "Deploy site"**
 
 #### **Method B: Drag & Drop**
 1. **Build your app:** `npm run build:prod`
 2. **Go to https://netlify.com**
-3. **Drag the `dist/dental-client/browser` folder** to the deploy area
+3. **Drag the `dist/blog-app/browser` folder** to the deploy area
 4. **Your site is live!**
 
 **Advantages:**
@@ -66,7 +66,7 @@ Your Angular dental blog app is now **100% ready for publishing** with the follo
 4. **Import your repository**
 5. **Framework:** Angular (auto-detected)
 6. **Build Command:** `npm run build:prod`
-7. **Output Directory:** `dist/dental-client/browser`
+7. **Output Directory:** `dist/blog-app/browser`
 8. **Click "Deploy"**
 
 #### **Method B: Vercel CLI**
@@ -103,10 +103,10 @@ vercel
 #### **Using Docker (Recommended)**
 ```bash
 # Build Docker image
-docker build -t dental-blog-app .
+docker build -t blog-app .
 
 # Run container
-docker run -p 4000:4000 dental-blog-app
+docker run -p 4000:4000 blog-app
 
 # Or use docker-compose
 docker-compose up -d
@@ -115,8 +115,8 @@ docker-compose up -d
 #### **Manual Deployment**
 ```bash
 # On your server
-git clone https://github.com/yourusername/dental-blog-app.git
-cd dental-blog-app
+git clone https://github.com/yourusername/blog-app.git
+cd blog-app
 npm install
 npm run build:prod
 
@@ -124,7 +124,7 @@ npm run build:prod
 npm install -g pm2
 
 # Start the application
-pm2 start npm --name "dental-blog" -- run serve:ssr
+pm2 start npm --name "blog-app" -- run serve:ssr
 pm2 save
 pm2 startup
 ```
@@ -171,10 +171,10 @@ git init
 git add .
 
 # Commit changes
-git commit -m "Initial commit: Angular dental blog app"
+git commit -m "Initial commit: Angular blog app"
 
 # Add remote origin (replace with your URL)
-git remote add origin https://github.com/yourusername/dental-blog-app.git
+git remote add origin https://github.com/yourusername/blog-app.git
 
 # Push to remote
 git push -u origin main
@@ -213,7 +213,7 @@ git push -u origin main
 ```bash
 # Analyze bundle size
 npm run build:prod -- --stats-json
-npx webpack-bundle-analyzer dist/dental-client/browser/stats.json
+npx webpack-bundle-analyzer dist/blog-app/browser/stats.json
 
 # Test performance
 npm run build:prod
@@ -283,7 +283,7 @@ npm run build:prod
 
 ## 🎉 **Success!**
 
-Your Angular dental blog app is now:
+Your Angular blog app is now:
 - ✅ **Fully configured** for production
 - ✅ **Ready for deployment** on any platform
 - ✅ **Optimized** for performance

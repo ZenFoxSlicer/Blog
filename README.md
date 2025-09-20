@@ -1,6 +1,6 @@
-# Dental Blog App
+# Blog App
 
-A modern Angular application for dental practice management and blog functionality.
+A modern Angular application for blog functionality and content management.
 
 ## Features
 
@@ -48,7 +48,7 @@ Before running this application, make sure you have the following installed:
 - `npm run build` - Build the application for production
 - `npm run watch` - Build and watch for changes
 - `npm test` - Run unit tests
-- `npm run serve:ssr:dental-client` - Serve the SSR version
+- `npm run serve:ssr:blog-app` - Serve the SSR version
 
 ## Project Structure
 
@@ -88,14 +88,14 @@ src/
 ### Option 1: Static Hosting (Netlify, Vercel, GitHub Pages)
 
 1. Build the application: `npm run build`
-2. Deploy the `dist/dental-client/browser` folder to your static hosting service
+2. Deploy the `dist/blog-app/browser` folder to your static hosting service
 
 ### Option 2: Server Deployment (Node.js)
 
 1. Build the application: `npm run build`
 2. Deploy the entire project to your server
 3. Install dependencies: `npm install --production`
-4. Start the SSR server: `npm run serve:ssr:dental-client`
+4. Start the SSR server: `npm run serve:ssr:blog-app`
 
 ### Option 3: Docker Deployment
 
@@ -109,7 +109,7 @@ RUN npm ci --only=production
 COPY . .
 RUN npm run build
 EXPOSE 4000
-CMD ["npm", "run", "serve:ssr:dental-client"]
+CMD ["npm", "run", "serve:ssr:blog-app"]
 ```
 
 ## Environment Configuration
