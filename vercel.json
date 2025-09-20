@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "name": "dental-blog-app",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/dental-client/browser"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "buildCommand": "npm run build:prod",
+  "outputDirectory": "dist/dental-client/browser",
+  "framework": "angular",
+  "functions": {
+    "src/server.ts": {
+      "runtime": "nodejs20.x"
+    }
+  }
+}

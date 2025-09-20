@@ -1,13 +1,30 @@
 {
-  "name": "dental-client",
-  "version": "0.0.0",
+  "name": "dental-blog-app",
+  "version": "1.0.0",
+  "description": "A modern Angular dental blog application with Server-Side Rendering (SSR)",
+  "keywords": ["angular", "dental", "blog", "ssr", "typescript", "scss"],
+  "author": "Fox",
+  "license": "MIT",
+  "homepage": "https://github.com/fox/dental-blog-app#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fox/dental-blog-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fox/dental-blog-app/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:dental-client": "node dist/dental-client/server/server.mjs"
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "serve:ssr": "node dist/dental-client/server/server.mjs",
+    "serve:ssr:dental-client": "node dist/dental-client/server/server.mjs",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "prettier": {
     "printWidth": 100,
@@ -21,7 +38,7 @@
       }
     ]
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
