@@ -75,14 +75,6 @@ interface Article {
 
           <!-- Google Ad Spaces -->
           <div class="ad-container">
-            <div class="ad-debug" style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 4px;">
-              <h5 style="margin: 0 0 5px 0; color: #495057;">AdSense Debug Info</h5>
-              <p style="margin: 0; font-size: 12px; color: #6c757d;">
-                Client: ca-pub-7697634874358535<br>
-                Slot: 1234567890 (placeholder)<br>
-                Status: <span id="ad-status-1">Loading...</span>
-              </p>
-            </div>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-7697634874358535"
@@ -735,25 +727,117 @@ export class BlogComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // Initialize AdSense ads when view is ready
     this.initializeAdSense();
+    // Add structured data for SEO
+    this.addStructuredData();
   }
 
   initializeAdSense() {
     try {
-      console.log('Blog component: Initializing AdSense...');
-      // Use the global initialization function
-      if (typeof (window as any).initializeAdSense === 'function') {
-        (window as any).initializeAdSense();
-      } else {
-        console.log('Global AdSense function not available yet');
-        // Fallback: try direct initialization
-        if (typeof (window as any).adsbygoogle !== 'undefined') {
-          console.log('Using fallback AdSense initialization');
-          ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-        }
+      // Check if adsbygoogle is available
+      if (typeof (window as any).adsbygoogle !== 'undefined') {
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
       }
     } catch (e) {
-      console.log('AdSense initialization error:', e);
+      console.log('AdSense not ready yet');
     }
+  }
+
+  addStructuredData() {
+    // Add website structured data
+    const websiteData = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Blog App",
+      "description": "Discover the latest articles, insights, and stories on our blog. Stay updated with trending topics and expert opinions.",
+      "url": window.location.origin,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": window.location.origin + "?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    };
+
+    this.addStructuredDataToHead(websiteData, 'website-structured-data');
+  }
+
+  updateSEOForArticle(article: Article) {
+    // Update page title
+    document.title = `${article.title} - Blog App`;
+    
+    // Update meta description
+    this.updateMetaTag('description', article.excerpt || article.content.substring(0, 160) + '...');
+    
+    // Update Open Graph tags
+    this.updateMetaTag('og:title', article.title, 'property');
+    this.updateMetaTag('og:description', article.excerpt || article.content.substring(0, 160) + '...', 'property');
+    this.updateMetaTag('og:url', window.location.href, 'property');
+    
+    // Update Twitter Card tags
+    this.updateMetaTag('twitter:title', article.title);
+    this.updateMetaTag('twitter:description', article.excerpt || article.content.substring(0, 160) + '...');
+    
+    // Add article structured data
+    this.addArticleStructuredData(article);
+  }
+
+  updateMetaTag(name: string, content: string, attribute: string = 'name') {
+    let metaTag = document.querySelector(`meta[${attribute}="${name}"]`);
+    if (!metaTag) {
+      metaTag = document.createElement('meta');
+      metaTag.setAttribute(attribute, name);
+      document.head.appendChild(metaTag);
+    }
+    metaTag.setAttribute('content', content);
+  }
+
+  addArticleStructuredData(article: Article) {
+    const articleData = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": article.title,
+      "description": article.excerpt || article.content.substring(0, 160) + '...',
+      "author": {
+        "@type": "Person",
+        "name": "Fox"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Blog App",
+        "logo": {
+          "@type": "ImageObject",
+          "url": window.location.origin + "/favicon.ico"
+        }
+      },
+      "datePublished": article.publishDate,
+      "dateModified": article.publishDate,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": window.location.href
+      },
+      "articleBody": article.content,
+      "wordCount": article.content.split(' ').length,
+      "keywords": article.tags ? article.tags.join(', ') : ''
+    };
+
+    this.addStructuredDataToHead(articleData, 'article-structured-data');
+  }
+
+  addStructuredDataToHead(data: any, id: string) {
+    // Remove existing structured data with same ID
+    const existing = document.getElementById(id);
+    if (existing) {
+      existing.remove();
+    }
+
+    // Add new structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    script.textContent = JSON.stringify(data);
+    document.head.appendChild(script);
   }
 
   initializeArticles() {
@@ -1320,6 +1404,8 @@ export class BlogComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.initializeAdSense();
     }, 100);
+    // Update SEO meta tags and structured data
+    this.updateSEOForArticle(article);
   }
 
   previousArticle() {
