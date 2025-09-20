@@ -9,7 +9,7 @@ A modern Angular application for blog functionality and content management.
 - **Component-based Architecture** for maintainability
 - **Routing System** for navigation
 - **Blog Management** functionality
-- **Public Pages** for clinic information
+- **Public Pages** for additional content
 
 ## Prerequisites
 
@@ -58,7 +58,7 @@ src/
 │   ├── auth/              # Authentication components
 │   ├── blog/              # Blog-related components
 │   ├── business/          # Business logic components
-│   ├── public/            # Public pages (home, clinics)
+│   ├── public/            # Public pages
 │   ├── shared/            # Shared components and utilities
 │   ├── app.ts             # Main app component
 │   ├── app.html           # App template
@@ -144,4 +144,4 @@ For support and questions, please open an issue in the repository.
 - Initial release
 - Angular 20 with SSR
 - Basic blog functionality
-- Public pages for clinic information
+- Public pages for additional content

@@ -34,6 +34,11 @@
                 "glob": "robots.txt",
                 "input": ".",
                 "output": "."
+              },
+              {
+                "glob": "google9cbb69f3989dcb05.html",
+                "input": "src",
+                "output": "."
               }
             ],
             "styles": [
@@ -105,6 +110,11 @@
               {
                 "glob": "robots.txt",
                 "input": ".",
+                "output": "."
+              },
+              {
+                "glob": "google9cbb69f3989dcb05.html",
+                "input": "src",
                 "output": "."
               }
             ],

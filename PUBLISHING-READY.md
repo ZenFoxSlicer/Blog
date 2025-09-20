@@ -118,7 +118,7 @@ npm run serve:ssr           # Test SSR locally
 - **Component-based architecture** for maintainability
 - **Routing system** for navigation
 - **Blog functionality** ready for content
-- **Public pages** for clinic information
+- **Public pages** for additional content
 - **Production optimizations** enabled
 - **SEO-ready** with proper meta tags
 

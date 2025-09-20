@@ -743,6 +743,9 @@ export class BlogComponent implements OnInit, AfterViewInit {
   }
 
   addStructuredData() {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return;
+    
     // Add website structured data
     const websiteData = {
       "@context": "https://schema.org",
@@ -764,6 +767,9 @@ export class BlogComponent implements OnInit, AfterViewInit {
   }
 
   updateSEOForArticle(article: Article) {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return;
+    
     // Update page title
     document.title = `${article.title} - Blog App`;
     
@@ -784,6 +790,9 @@ export class BlogComponent implements OnInit, AfterViewInit {
   }
 
   updateMetaTag(name: string, content: string, attribute: string = 'name') {
+    // Check if we're in browser environment
+    if (typeof document === 'undefined') return;
+    
     let metaTag = document.querySelector(`meta[${attribute}="${name}"]`);
     if (!metaTag) {
       metaTag = document.createElement('meta');
@@ -794,6 +803,9 @@ export class BlogComponent implements OnInit, AfterViewInit {
   }
 
   addArticleStructuredData(article: Article) {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return;
+    
     const articleData = {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -826,6 +838,9 @@ export class BlogComponent implements OnInit, AfterViewInit {
   }
 
   addStructuredDataToHead(data: any, id: string) {
+    // Check if we're in browser environment
+    if (typeof document === 'undefined') return;
+    
     // Remove existing structured data with same ID
     const existing = document.getElementById(id);
     if (existing) {
