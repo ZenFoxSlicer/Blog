@@ -22,13 +22,31 @@ interface Article {
       <!-- Header with Search -->
       <header class="blog-header">
         <div class="search-container">
-          <input 
-            type="text" 
-            [(ngModel)]="searchQuery" 
-            (input)="onSearch()"
-            placeholder="Search articles by title, content, or tags..."
-            class="search-input"
-          >
+          <div class="search-input-wrapper">
+            <input 
+              type="text" 
+              [(ngModel)]="searchQuery" 
+              (input)="onSearch()"
+              (focus)="onSearchFocus()"
+              (blur)="onSearchBlur()"
+              (keydown)="onSearchKeydown($event)"
+              placeholder="Search articles by title, content, or tags..."
+              class="search-input"
+            >
+            <div class="search-suggestions" *ngIf="showSuggestions && searchSuggestions.length > 0">
+              <div 
+                class="suggestion-item" 
+                *ngFor="let suggestion of searchSuggestions; let i = index"
+                [class.selected]="i === selectedSuggestionIndex"
+                (click)="selectSuggestion(suggestion)"
+                (mouseenter)="selectedSuggestionIndex = i"
+              >
+                <div class="suggestion-title">{{ suggestion.title }}</div>
+                <div class="suggestion-meta">{{ suggestion.author }} • {{ suggestion.publishDate | date:'MMM d, y' }}</div>
+                <div class="suggestion-excerpt">{{ suggestion.excerpt }}</div>
+              </div>
+            </div>
+          </div>
           <button (click)="clearSearch()" class="clear-btn">Clear</button>
         </div>
         <div class="search-results-info" *ngIf="filteredArticles.length !== articles.length">
@@ -210,18 +228,79 @@ interface Article {
       margin-bottom: 10px;
     }
 
-    .search-input {
+    .search-input-wrapper {
       flex: 1;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
       padding: 12px 16px;
       border: 2px solid #e9ecef;
       border-radius: 6px;
       font-size: 16px;
       transition: border-color 0.3s ease;
+      box-sizing: border-box;
     }
 
     .search-input:focus {
       outline: none;
       border-color: #007bff;
+    }
+
+    .search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #e9ecef;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+
+    .suggestion-item {
+      padding: 12px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid #f8f9fa;
+      transition: background-color 0.2s ease;
+    }
+
+    .suggestion-item:hover,
+    .suggestion-item.selected {
+      background-color: #f8f9fa;
+    }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggestion-title {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    .suggestion-meta {
+      font-size: 12px;
+      color: #6c757d;
+      margin-bottom: 4px;
+    }
+
+    .suggestion-excerpt {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .clear-btn {
@@ -546,6 +625,26 @@ interface Article {
         flex-direction: column;
       }
       
+      .search-suggestions {
+        max-height: 250px;
+      }
+      
+      .suggestion-item {
+        padding: 10px 12px;
+      }
+      
+      .suggestion-title {
+        font-size: 13px;
+      }
+      
+      .suggestion-meta {
+        font-size: 11px;
+      }
+      
+      .suggestion-excerpt {
+        font-size: 11px;
+      }
+      
       .article-header h1 {
         font-size: 2rem;
       }
@@ -563,6 +662,9 @@ export class BlogComponent implements OnInit {
   filteredArticles: Article[] = [];
   selectedArticle: Article | null = null;
   searchQuery: string = '';
+  searchSuggestions: Article[] = [];
+  showSuggestions: boolean = false;
+  selectedSuggestionIndex: number = -1;
 
   ngOnInit() {
     this.initializeArticles();
@@ -941,10 +1043,17 @@ export class BlogComponent implements OnInit {
   onSearch() {
     if (!this.searchQuery.trim()) {
       this.filteredArticles = [...this.articles];
+      this.searchSuggestions = [];
+      this.showSuggestions = false;
       return;
     }
 
     const query = this.searchQuery.toLowerCase().trim();
+    
+    // Update suggestions for dropdown
+    this.updateSearchSuggestions(query);
+    
+    // Update filtered articles for main display
     this.filteredArticles = this.articles.filter(article => {
       // Exact word search
       const exactMatch = article.title.toLowerCase().includes(query) ||
@@ -964,6 +1073,75 @@ export class BlogComponent implements OnInit {
 
       return exactMatch || contextMatch;
     });
+  }
+
+  updateSearchSuggestions(query: string) {
+    if (query.length < 2) {
+      this.searchSuggestions = [];
+      this.showSuggestions = false;
+      return;
+    }
+
+    // Get suggestions based on title matches first, then other fields
+    const suggestions = this.articles
+      .filter(article => {
+        const titleMatch = article.title.toLowerCase().includes(query);
+        const excerptMatch = article.excerpt.toLowerCase().includes(query);
+        const authorMatch = article.author.toLowerCase().includes(query);
+        const tagMatch = article.tags.some(tag => tag.toLowerCase().includes(query));
+        
+        return titleMatch || excerptMatch || authorMatch || tagMatch;
+      })
+      .sort((a, b) => {
+        // Prioritize title matches
+        const aTitleMatch = a.title.toLowerCase().includes(query);
+        const bTitleMatch = b.title.toLowerCase().includes(query);
+        
+        if (aTitleMatch && !bTitleMatch) return -1;
+        if (!aTitleMatch && bTitleMatch) return 1;
+        
+        // Then by relevance score
+        const aScore = this.calculateRelevanceScore(a, query);
+        const bScore = this.calculateRelevanceScore(b, query);
+        
+        return bScore - aScore;
+      })
+      .slice(0, 5); // Show max 5 suggestions
+
+    this.searchSuggestions = suggestions;
+    this.showSuggestions = true;
+    this.selectedSuggestionIndex = -1;
+  }
+
+  calculateRelevanceScore(article: Article, query: string): number {
+    let score = 0;
+    const queryLower = query.toLowerCase();
+    
+    // Title match gets highest score
+    if (article.title.toLowerCase().includes(queryLower)) {
+      score += 10;
+      // Exact title match gets even higher score
+      if (article.title.toLowerCase().startsWith(queryLower)) {
+        score += 5;
+      }
+    }
+    
+    // Author match
+    if (article.author.toLowerCase().includes(queryLower)) {
+      score += 3;
+    }
+    
+    // Tag match
+    if (article.tags.some(tag => tag.toLowerCase().includes(queryLower))) {
+      score += 2;
+    }
+    
+    // Excerpt match
+    if (article.excerpt.toLowerCase().includes(queryLower)) {
+      score += 1;
+    }
+    
+    return score;
   }
 
   getContextTerms(query: string): string[] {
@@ -997,6 +1175,61 @@ export class BlogComponent implements OnInit {
   clearSearch() {
     this.searchQuery = '';
     this.filteredArticles = [...this.articles];
+    this.searchSuggestions = [];
+    this.showSuggestions = false;
+    this.selectedSuggestionIndex = -1;
+  }
+
+  onSearchFocus() {
+    if (this.searchSuggestions.length > 0) {
+      this.showSuggestions = true;
+    }
+  }
+
+  onSearchBlur() {
+    // Delay hiding suggestions to allow clicking on them
+    setTimeout(() => {
+      this.showSuggestions = false;
+      this.selectedSuggestionIndex = -1;
+    }, 200);
+  }
+
+  onSearchKeydown(event: KeyboardEvent) {
+    if (!this.showSuggestions || this.searchSuggestions.length === 0) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        this.selectedSuggestionIndex = Math.min(
+          this.selectedSuggestionIndex + 1,
+          this.searchSuggestions.length - 1
+        );
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.selectedSuggestionIndex = Math.max(this.selectedSuggestionIndex - 1, -1);
+        break;
+      case 'Enter':
+        event.preventDefault();
+        if (this.selectedSuggestionIndex >= 0) {
+          this.selectSuggestion(this.searchSuggestions[this.selectedSuggestionIndex]);
+        }
+        break;
+      case 'Escape':
+        this.showSuggestions = false;
+        this.selectedSuggestionIndex = -1;
+        break;
+    }
+  }
+
+  selectSuggestion(suggestion: Article) {
+    this.searchQuery = suggestion.title;
+    this.selectArticle(suggestion);
+    this.showSuggestions = false;
+    this.selectedSuggestionIndex = -1;
+    this.onSearch(); // Update the filtered articles
   }
 
   selectArticle(article: Article) {
