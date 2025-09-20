@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -75,34 +75,42 @@ interface Article {
 
           <!-- Google Ad Spaces -->
           <div class="ad-container">
-            <div class="ad-placeholder">
-              <h4>Google Ad Space 1</h4>
-              <p>300x250</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
           
           <div class="ad-container">
-            <div class="ad-placeholder">
-              <h4>Google Ad Space 2</h4>
-              <p>300x250</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567891"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
 
           <div class="ad-container">
-            <div class="ad-placeholder">
-              <h4>Google Ad Space 3</h4>
-              <p>300x250</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567892"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
         </aside>
 
         <!-- Main Content Area -->
         <main class="main-content">
           <div class="ad-banner" *ngIf="selectedArticle">
-            <div class="ad-placeholder">
-              <h4>Google Ad Banner</h4>
-              <p>728x90</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567893"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
 
           <article class="article-content" *ngIf="selectedArticle">
@@ -124,10 +132,12 @@ interface Article {
 
             <!-- In-Content Ad -->
             <div class="in-content-ad">
-              <div class="ad-placeholder">
-                <h4>Google Ad Space</h4>
-                <p>300x250</p>
-              </div>
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-7697634874358535"
+                   data-ad-slot="1234567894"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
             </div>
 
             <div class="article-footer">
@@ -152,38 +162,48 @@ interface Article {
         <aside class="right-sidebar">
           <!-- Google Ad Spaces -->
           <div class="ad-container">
-            <div class="ad-placeholder">
-              <h4>Google Ad Space 4</h4>
-              <p>300x250</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567895"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
 
           <div class="ad-container">
-            <div class="ad-placeholder">
-              <h4>Google Ad Space 5</h4>
-              <p>300x600</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567896"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
 
           <div class="ad-container">
-            <div class="ad-placeholder">
-              <h4>Google Ad Space 6</h4>
-              <p>300x250</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567897"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
 
           <div class="ad-container">
-            <div class="ad-placeholder">
-              <h4>Google Ad Space 7</h4>
-              <p>300x250</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567898"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
 
           <div class="ad-container">
-            <div class="ad-placeholder">
-              <h4>Google Ad Space 8</h4>
-              <p>300x250</p>
-            </div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7697634874358535"
+                 data-ad-slot="1234567899"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
 
           <!-- Popular Articles -->
@@ -199,10 +219,12 @@ interface Article {
 
       <!-- Footer Ad -->
       <footer class="blog-footer">
-        <div class="ad-placeholder">
-          <h4>Google Ad Footer</h4>
-          <p>728x90</p>
-        </div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7697634874358535"
+             data-ad-slot="1234567800"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </footer>
     </div>
   `,
@@ -381,6 +403,29 @@ interface Article {
     .ad-placeholder p {
       margin: 0;
       font-size: 12px;
+    }
+
+    /* AdSense ad styling */
+    .adsbygoogle {
+      display: block;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .ad-container .adsbygoogle {
+      min-height: 250px;
+    }
+
+    .ad-banner .adsbygoogle {
+      min-height: 90px;
+    }
+
+    .in-content-ad .adsbygoogle {
+      min-height: 250px;
+    }
+
+    .blog-footer .adsbygoogle {
+      min-height: 90px;
     }
 
     .right-sidebar .ad-container:nth-child(2) .ad-placeholder {
@@ -657,7 +702,7 @@ interface Article {
 
   `]
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, AfterViewInit {
   articles: Article[] = [];
   filteredArticles: Article[] = [];
   selectedArticle: Article | null = null;
@@ -671,6 +716,27 @@ export class BlogComponent implements OnInit {
     this.filteredArticles = [...this.articles];
     if (this.articles.length > 0) {
       this.selectedArticle = this.articles[0];
+    }
+    
+    // Initialize AdSense ads after view is initialized
+    setTimeout(() => {
+      this.initializeAdSense();
+    }, 100);
+  }
+
+  ngAfterViewInit() {
+    // Initialize AdSense ads when view is ready
+    this.initializeAdSense();
+  }
+
+  initializeAdSense() {
+    try {
+      // Check if adsbygoogle is available
+      if (typeof (window as any).adsbygoogle !== 'undefined') {
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      }
+    } catch (e) {
+      console.log('AdSense not ready yet');
     }
   }
 
@@ -1234,6 +1300,10 @@ export class BlogComponent implements OnInit {
 
   selectArticle(article: Article) {
     this.selectedArticle = article;
+    // Reinitialize ads when article changes
+    setTimeout(() => {
+      this.initializeAdSense();
+    }, 100);
   }
 
   previousArticle() {

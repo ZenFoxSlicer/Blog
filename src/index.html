@@ -3,6 +3,18 @@
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7697634874358535"
      crossorigin="anonymous"></script>
+  <script>
+    // Initialize AdSense ads when page loads
+    window.addEventListener('load', function() {
+      if (typeof adsbygoogle !== 'undefined') {
+        try {
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+          console.log('AdSense initialization error:', e);
+        }
+      }
+    });
+  </script>
   <meta charset="utf-8">
   <title>Blog App</title>
   <base href="/">
